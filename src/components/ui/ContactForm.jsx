@@ -9,18 +9,16 @@ export default function ContactForm() {
 
     const form = e.currentTarget;
     const formData = new FormData(form);
-
     const number = formData.get("number");
+    const email = import.meta.env.VITE_EMAIL;
 
     if (number.length < 10 || number.length > 11) {
       alert("Digite um telefone válido com DDD.");
       return;
     }
 
-    const email = import.meta.env.VITE_EMAIL;
-
     if (!email) {
-      alert("Configure a variável VITE_EMAIL no arquivo .env.");
+      alert("Configure a variável VITE_EMAIL no arquivo .env");
       return;
     }
 
@@ -101,7 +99,7 @@ export default function ContactForm() {
           <textarea
             name="message"
             rows="5"
-            placeholder="Me conte sobre o seu negócio"
+            placeholder="Escreva sua mensagem aqui"
             required
             className="w-full rounded-2xl border border-black/10 bg-black/[0.03] px-4 py-3 text-zinc-900 outline-none transition placeholder:text-zinc-400 focus:border-pink-400/40 dark:border-white/10 dark:bg-white/5 dark:text-white dark:placeholder:text-white/30"
           />
@@ -113,7 +111,7 @@ export default function ContactForm() {
         {!success ? (
           <button
             type="submit"
-            className="rounded-full bg-gradient-to-r from-pink-500 to-blue-500 px-6 py-3 font-medium text-white shadow-lg shadow-pink-500/20 transition hover:scale-[1.01]"
+            className="rounded-full cursor-pointer bg-gradient-to-r from-pink-500 to-blue-500 px-6 py-3 font-medium text-white shadow-lg shadow-pink-500/20 transition hover:scale-[1.01]"
           >
             Enviar mensagem
           </button>

@@ -4,7 +4,37 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  /* FONT */
   --font-googleSans: "Google Sans", sans-serif;
+
+  /* BRAND COLORS */
+  --color-primary: #ec4899;     
+  --color-secondary: #3b82f6;  
+
+  /* VARIAÇÕES (pra gradient e hover) */
+  --color-primary-light: #f472b6;  
+  --color-primary-soft: #fbcfe8;   
+
+  --color-secondary-light: #60a5fa; 
+  --color-secondary-soft: #bfdbfe;  
+
+  /* BASE */
+  --color-background: #ffffff;
+  --color-background-dark: #000000;
+
+  --color-surface: rgba(0, 0, 0, 0.03);
+  --color-surface-dark: rgba(255, 255, 255, 0.05);
+
+  /* TEXT */
+  --color-text: #18181b;       
+  --color-text-soft: #52525b;  
+
+  --color-text-dark: #ffffff;
+  --color-text-soft-dark: rgba(255,255,255,0.7);
+
+  /* BORDER */
+  --color-border: rgba(0,0,0,0.1);
+  --color-border-dark: rgba(255,255,255,0.1);
 }
 
 body {
