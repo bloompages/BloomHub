@@ -13,6 +13,7 @@ import {
   resultItems,
 } from "./data/siteData";
 import FloatingWhatsApp from "./components/ui/FloatingWhats";
+import PortfolioSection from "./components/sections/PortfolioSection";
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -50,6 +51,7 @@ export default function App() {
         <AboutSection items={aboutItems} />
         <ServicesSection services={services} />
         <ResultsSection items={resultItems} />
+        <PortfolioSection />
         <ContactSection />
       </main>
     <FloatingWhatsApp />

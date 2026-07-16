@@ -1,5 +1,13 @@
+import { motion } from "framer-motion";
 import ThemeToggle from "../ui/ThemeToggle";
 import logo from "../../assets/logobloompages.png";
+
+const navLinks = [
+  { label: "Sobre", href: "#sobre" },
+  { label: "Serviços", href: "#servicos" },
+  { label: "Portfólio", href: "#portfolio" },
+  { label: "Contato", href: "#contato" },
+];
 
 export default function Header({ theme, setTheme }) {
   return (
@@ -13,8 +21,10 @@ export default function Header({ theme, setTheme }) {
               className="h-full w-full object-cover"
             />
           </div>
+
           <div>
             <p className="text-lg font-semibold tracking-wide">Bloom Pages</p>
+
             <p className="text-xs uppercase tracking-[0.35em] text-zinc-500 dark:text-white/50">
               estratégia + tecnologia
             </p>
@@ -22,15 +32,19 @@ export default function Header({ theme, setTheme }) {
         </div>
 
         <nav className="hidden items-center gap-8 text-sm text-zinc-600 md:flex dark:text-white/70">
-          <a href="#sobre" className="transition hover:text-pink-400">
-            Sobre
-          </a>
-          <a href="#servicos" className="transition hover:text-pink-400">
-            Serviços
-          </a>
-          <a href="#contato" className="transition hover:text-pink-400">
-            Contato
-          </a>
+          {navLinks.map((link) => (
+            <motion.a
+              key={link.href}
+              href={link.href}
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
+              className="group relative py-2 transition-colors hover:text-zinc-950 dark:hover:text-white"
+            >
+              {link.label}
+
+              <span className="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 transition-all duration-300 group-hover:w-full" />
+            </motion.a>
+          ))}
         </nav>
 
         <div className="flex items-center gap-3">
