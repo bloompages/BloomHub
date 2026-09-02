@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import WhatsAppIcon from "../icon/WhatsIcon";
+import { WHATSAPP_URL, whatsappLink } from "../../utils/links";
 
 export default function FloatingWhatsApp() {
   const [showTooltip, setShowTooltip] = useState(true);
-  const whatsappLink = import.meta.env.VITE_WHATSAPP_URL;
+  const link = whatsappLink(
+    "Olá! Vim pelo site da Bloom Pages e quero conversar sobre um projeto.",
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -13,7 +16,7 @@ export default function FloatingWhatsApp() {
     return () => clearTimeout(timer);
   }, []);
 
-  if (!whatsappLink) return null;
+  if (!WHATSAPP_URL) return null;
 
   return (
     <div
@@ -40,7 +43,7 @@ export default function FloatingWhatsApp() {
 
       {/* BOTÃO */}
       <a
-        href={whatsappLink}
+        href={link}
         target="_blank"
         rel="noopener noreferrer"
         className="group flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] shadow-xl shadow-pink-500/30 transition hover:scale-110"

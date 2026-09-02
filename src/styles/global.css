@@ -40,3 +40,84 @@
 body {
   font-family: var(--font-googleSans);
 }
+html {
+  scroll-behavior: smooth;
+}
+
+/* Compensa o header fixo ao navegar pelas âncoras */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* -----------------------------------------------------------------------
+   Borda animada com a paleta da Bloom (rosa → fúcsia → azul)
+   Usada nos cards de produto: .bloom-border (e .bloom-border-strong)
+----------------------------------------------------------------------- */
+
+.bloom-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(
+    120deg,
+    var(--color-primary),
+    #d946ef,
+    var(--color-secondary),
+    var(--color-primary-light),
+    var(--color-primary)
+  );
+  background-size: 300% 300%;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation:
+    bloom-border-flow 7s linear infinite,
+    bloom-border-blink 3.2s ease-in-out infinite;
+  animation-delay: var(--bloom-delay, 0s), var(--bloom-delay, 0s);
+}
+
+.bloom-border-strong::before {
+  padding: 2px;
+  animation-duration: 5s, 2.6s;
+}
+
+@keyframes bloom-border-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+@keyframes bloom-border-blink {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bloom-border::before {
+    animation: none;
+    opacity: 0.55;
+  }
+}

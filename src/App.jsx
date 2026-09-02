@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
+
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import HeroSection from "./components/sections/HeroSection";
-import AboutSection from "./components/sections/AboutSection";
-import ServicesSection from "./components/sections/ServicesSection";
-import ResultsSection from "./components/sections/ResultsSection";
+import SolutionsSection from "./components/sections/SolutionsSection";
+import ProcessSection from "./components/sections/ProcessSection";
+import DifferentialsSection from "./components/sections/DifferentialsSection";
+import FaqSection from "./components/sections/FaqSection";
 import ContactSection from "./components/sections/ContactSection";
+import FloatingWhatsApp from "./components/ui/FloatingWhats";
+import ScrollGlow from "./components/ui/ScrollGlow";
+
 import {
   highlights,
-  services,
-  aboutItems,
-  resultItems,
+  featuredSolution,
+  solutions,
+  processSteps,
+  differentials,
+  faqItems,
 } from "./data/siteData";
-import FloatingWhatsApp from "./components/ui/FloatingWhats";
-import PortfolioSection from "./components/sections/PortfolioSection";
 
 export default function App() {
   const [theme, setTheme] = useState(() => {
@@ -37,25 +42,25 @@ export default function App() {
   }, [theme]);
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900 transition-colors duration-300 dark:bg-black dark:text-white selection:bg-pink-500/40 selection:text-white">
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute left-[-120px] top-[-120px] h-72 w-72 rounded-full bg-pink-500/20 blur-3xl" />
-        <div className="absolute right-[-120px] top-24 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
-        <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-fuchsia-500/10 blur-3xl" />
-      </div>
+    <div className="min-h-screen overflow-x-hidden bg-white text-zinc-900 transition-colors duration-300 dark:bg-black dark:text-white selection:bg-pink-500/40 selection:text-white">
+      <ScrollGlow />
 
       <Header theme={theme} setTheme={setTheme} />
 
-      <main>
+      <main className="relative z-10">
         <HeroSection highlights={highlights} />
-        <AboutSection items={aboutItems} />
-        <ServicesSection services={services} />
-        <ResultsSection items={resultItems} />
-        <PortfolioSection />
+        <SolutionsSection featured={featuredSolution} solutions={solutions} />
+        <ProcessSection steps={processSteps} />
+        <DifferentialsSection items={differentials} />
+        <FaqSection items={faqItems} />
         <ContactSection />
       </main>
-    <FloatingWhatsApp />
-      <Footer />
+
+      <FloatingWhatsApp />
+
+      <div className="relative z-10">
+        <Footer />
+      </div>
     </div>
   );
 }

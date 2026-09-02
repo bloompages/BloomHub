@@ -2,8 +2,13 @@ import { motion } from "framer-motion";
 import { FaWhatsapp, FaInstagram } from "react-icons/fa";
 
 import ContactForm from "../ui/ContactForm";
+import { INSTAGRAM_URL, whatsappLink } from "../../utils/links";
 
 export default function ContactSection() {
+  const contactLink = whatsappLink(
+    "Olá! Vim pelo site da Bloom Pages e quero conversar sobre um projeto.",
+  );
+
   return (
     <section
       id="contato"
@@ -11,79 +16,62 @@ export default function ContactSection() {
     >
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-6 py-20 lg:grid-cols-2 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, x: -60 }}
+          initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <p className="text-sm uppercase tracking-[0.35em] text-blue-500/80 dark:text-blue-300/80">
             Comece seu projeto
           </p>
 
           <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">
-            Vamos transformar sua ideia em uma solução digital
+            Conte o que você precisa e receba uma proposta
           </h2>
 
           <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-600 dark:text-white/70">
-            A Bloom Pages desenvolve landing pages, sites institucionais,
-            sistemas web, automações e agentes de IA para fortalecer sua marca,
-            otimizar processos e gerar novas oportunidades para o seu negócio.
+            Responda em poucos minutos pelo formulário ou chame no WhatsApp.
+            Retornamos com escopo, prazo e valor — sem compromisso.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
             <motion.a
-              href={import.meta.env.VITE_WHATSAPP_URL}
-              target="_blank"
+              href={contactLink}
+              target={contactLink.startsWith("#") ? undefined : "_blank"}
               rel="noreferrer"
               aria-label="Falar com a Bloom Pages pelo WhatsApp"
-              whileHover={{
-                scale: 1.05,
-                y: -3,
-              }}
-              whileTap={{
-                scale: 0.98,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 280,
-                damping: 18,
-              }}
-              className="flex items-center gap-2 rounded-full bg-green-500 px-5 py-3 font-medium text-white shadow-lg transition-shadow hover:shadow-xl"
+              whileHover={{ scale: 1.04, y: -3 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ type: "spring", stiffness: 280, damping: 18 }}
+              className="flex min-h-12 items-center gap-2 rounded-full bg-green-500 px-5 py-3 font-medium text-white shadow-lg transition-shadow hover:shadow-xl"
             >
-              <FaWhatsapp className="text-xl" />
+              <FaWhatsapp aria-hidden="true" className="text-xl" />
               WhatsApp
             </motion.a>
 
-            <motion.a
-              href={import.meta.env.VITE_INSTAGRAM}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Acessar o Instagram da Bloom Pages"
-              whileHover={{
-                scale: 1.05,
-                y: -3,
-              }}
-              whileTap={{
-                scale: 0.98,
-              }}
-              transition={{
-                type: "spring",
-                stiffness: 280,
-                damping: 18,
-              }}
-              className="flex items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-400 px-5 py-3 font-medium text-white shadow-lg transition-shadow hover:shadow-xl"
-            >
-              <FaInstagram className="text-xl" />
-              Instagram
-            </motion.a>
+            {INSTAGRAM_URL && (
+              <motion.a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Ver os projetos da Bloom Pages no Instagram"
+                whileHover={{ scale: 1.04, y: -3 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 280, damping: 18 }}
+                className="flex min-h-12 items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-orange-400 px-5 py-3 font-medium text-white shadow-lg transition-shadow hover:shadow-xl"
+              >
+                <FaInstagram aria-hidden="true" className="text-xl" />
+                Ver projetos no Instagram
+              </motion.a>
+            )}
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 60 }}
+          initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
         >
           <ContactForm />
         </motion.div>
