@@ -2,6 +2,7 @@ import {
   FaRocket,
   FaGlobe,
   FaLaptopCode,
+  FaCube,
   FaRobot,
   FaBolt,
   FaPalette,
@@ -14,38 +15,73 @@ import {
 
 export const highlights = [
   "Landing pages prontas para receber anúncios e gerar contatos",
+  "Landing pages 3D com cenas interativas para impressionar seu cliente",
   "Sites e sistemas web feitos sob medida para a sua operação",
   "Agentes de IA que atendem seus clientes 24 horas por dia",
 ];
 
-/* SOLUÇÃO PRINCIPAL ------------------------------------------------------ */
+/* SOLUÇÕES EM DESTAQUE --------------------------------------------------- */
 
-export const featuredSolution = {
-  id: "landing-page",
-  name: "Landing Page",
-  icon: FaRocket,
-  badge: "Nosso carro-chefe",
-  eyebrow: "Produto principal",
-  tagline: "Transforme visitantes em oportunidades.",
-  description:
-    "É o serviço que mais entregamos e o único com preço fechado publicado aqui: uma página estratégica para apresentar sua empresa, serviço ou produto e transformar visitantes em oportunidades.",
-  benefit: "Pronta para receber tráfego de anúncios e redes sociais.",
-  includes: [
-    "Domínio próprio incluso por 1 ano",
-    "Hospedagem e publicação da página no ar",
-    "Manutenção inclusa: ajustes de textos, imagens e contatos",
-    "Layout personalizado, sem template genérico",
-    "Versão para celular, tablet e desktop",
-    "Botão de WhatsApp e formulário de contato",
-  ],
-  price: "R$ 800,00",
-  priceNote: "à vista — preço fechado, sem surpresa",
-  priceAlt: "ou R$ 149,90 de entrada + R$ 149,90/mês na oferta anual",
-  footnote:
-    "No cartão, pagamento com juros conforme as condições da maquininha. No boleto, as condições são informadas na proposta.",
-  cta: "Quero minha Landing Page",
-  whatsappMessage: "Olá! Tenho interesse na Landing Page da Bloom Pages.",
-};
+export const featuredSolutions = [
+  {
+    id: "landing-page",
+    name: "Landing Page",
+    icon: FaRocket,
+    variant: "pink",
+    badge: "Nosso carro-chefe",
+    eyebrow: "Produto principal",
+    tagline: "Transforme visitantes em oportunidades.",
+    description:
+      "É o serviço que mais entregamos e o nosso preço fechado mais acessível: uma página estratégica para apresentar sua empresa, serviço ou produto e transformar visitantes em oportunidades.",
+    benefit: "Pronta para receber tráfego de anúncios e redes sociais.",
+    includes: [
+      "Domínio próprio incluso por 1 ano",
+      "Hospedagem e publicação da página no ar",
+      "Manutenção inclusa: ajustes de textos, imagens e contatos",
+      "Layout personalizado, sem template genérico",
+      "Versão para celular, tablet e desktop",
+      "Botão de WhatsApp e formulário de contato",
+    ],
+    price: "R$ 800,00",
+    priceNote: "à vista — preço fechado, sem surpresa",
+    priceAlt: "ou R$ 149,90 de entrada + R$ 149,90/mês na oferta anual",
+    footnote:
+      "No cartão, pagamento com juros conforme as condições da maquininha. No boleto, as condições são informadas na proposta.",
+    cta: "Quero minha Landing Page",
+    whatsappMessage: "Olá! Tenho interesse na Landing Page da Bloom Pages.",
+  },
+  {
+    id: "landing-page-3d",
+    name: "Landing Page 3D",
+    icon: FaCube,
+    variant: "immersive",
+    badge: "Experiência imersiva",
+    eyebrow: "Versão premium",
+    tagline: "Sua marca em outro nível.",
+    description:
+      "Uma landing page com cenas, objetos e animações em 3D, feita para marcas que querem impressionar já nos primeiros segundos e se destacar da concorrência.",
+    benefit:
+      "O visitante interage com o seu produto na tela, e não só olha uma foto.",
+    includes: [
+      "Cenas e objetos 3D interativos sob medida",
+      "Seu produto girando em 360° na tela",
+      "Animações que acompanham a rolagem",
+      "Layout exclusivo, sem template genérico",
+      "Otimização de performance para o celular",
+      "Versão para celular, tablet e desktop",
+      "Domínio próprio incluso por 1 ano",
+      "Hospedagem e publicação da página no ar",
+    ],
+    price: "R$ 3.000,00",
+    priceNote: "+ manutenção mensal de R$ 300,00/mês",
+    priceAlt:
+      "A manutenção cobre hospedagem e ajustes de textos, imagens, contatos e cenas 3D.",
+    footnote:
+      "Condições de parcelamento informadas na proposta, conforme a forma de pagamento escolhida.",
+    cta: "Quero uma Landing Page 3D",
+    whatsappMessage: "Olá! Tenho interesse na Landing Page 3D da Bloom Pages.",
+  },
+];
 
 /* DEMAIS SOLUÇÕES ------------------------------------------------------- */
 
@@ -182,7 +218,7 @@ export const faqItems = [
   {
     question: "O que está incluído na Landing Page de R$ 800,00?",
     answer:
-      "Criação da página com layout personalizado, organização dos textos junto com você, versão para celular, publicação no ar, domínio próprio por 1 ano e manutenção da página (ajustes de textos, imagens e contatos). É o nosso principal serviço e o único com preço fechado divulgado no site.",
+      "Criação da página com layout personalizado, organização dos textos junto com você, versão para celular, publicação no ar, domínio próprio por 1 ano e manutenção da página (ajustes de textos, imagens e contatos). É o nosso principal serviço e a porta de entrada mais acessível — quem quer uma experiência imersiva pode subir para a Landing Page 3D.",
   },
   {
     question: "O domínio e a manutenção continuam depois do primeiro ano?",
@@ -198,6 +234,11 @@ export const faqItems = [
     question: "Por que sites, sistemas web e automações são sob consulta?",
     answer:
       "Porque não existem dois projetos iguais: o valor depende do número de páginas, das funcionalidades, das integrações e do volume de tarefas envolvido. Você conta o que precisa e recebe uma proposta com escopo, prazo e valor antes de qualquer compromisso.",
+  },
+  {
+    question: "Qual a diferença da Landing Page 3D para a Landing Page comum?",
+    answer:
+      "A Landing Page 3D traz cenas e objetos tridimensionais interativos: o visitante gira o seu produto na tela, vê animações que acompanham a rolagem e vive uma experiência bem mais marcante. O investimento é de R$ 3.000,00, mais manutenção mensal de R$ 300,00, que já inclui hospedagem e os ajustes de textos, imagens e das cenas 3D.",
   },
   {
     question: "Quanto custa um Agente de IA?",

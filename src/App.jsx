@@ -13,7 +13,7 @@ import ScrollGlow from "./components/ui/ScrollGlow";
 
 import {
   highlights,
-  featuredSolution,
+  featuredSolutions,
   solutions,
   processSteps,
   differentials,
@@ -49,7 +49,7 @@ export default function App() {
 
       <main className="relative z-10">
         <HeroSection highlights={highlights} />
-        <SolutionsSection featured={featuredSolution} solutions={solutions} />
+        <SolutionsSection featured={featuredSolutions} solutions={solutions} />
         <ProcessSection steps={processSteps} />
         <DifferentialsSection items={differentials} />
         <FaqSection items={faqItems} />
