@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import { FaArrowRight, FaWhatsapp } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 
 import BloomLogo from "../brand/BloomLogo";
 import GlowButton from "../ui/GlowButton";
 import HubVisual from "../ui/HubVisual";
-import { whatsappLink } from "../../utils/links";
 
 const headline = "Sua empresa atendendo, vendendo e organizando".split(" ");
 
@@ -24,10 +23,6 @@ const word = {
 };
 
 export default function HeroSection({ highlights }) {
-  const contactLink = whatsappLink(
-    "Olá! Vim pelo site da BloomHub e quero solicitar um orçamento.",
-  );
-
   return (
     <section id="inicio" className="relative overflow-hidden">
       <div aria-hidden="true" className="bg-grid absolute inset-0" />
@@ -112,19 +107,6 @@ export default function HeroSection({ highlights }) {
                 className="transition duration-300 group-hover:translate-x-1"
               />
             </GlowButton>
-
-            <motion.a
-              href={contactLink}
-              target={contactLink.startsWith("#") ? undefined : "_blank"}
-              rel="noreferrer"
-              whileHover={{ scale: 1.03, y: -3 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: "spring", stiffness: 280, damping: 18 }}
-              className="flex min-h-12 items-center justify-center gap-2 rounded-full border border-black/10 px-6 py-3 font-medium text-zinc-700 transition-colors hover:border-purple-400/50 hover:bg-purple-500/5 hover:text-purple-600 dark:border-white/15 dark:text-white/85 dark:hover:bg-white/5 dark:hover:text-purple-200"
-            >
-              <FaWhatsapp aria-hidden="true" className="text-lg" />
-              Falar no WhatsApp
-            </motion.a>
           </motion.div>
 
           <motion.p
