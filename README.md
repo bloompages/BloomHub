@@ -13,6 +13,8 @@ npm run dev
 
 ## Variáveis de ambiente (`.env`)
 
+Copie `.env.example` para `.env` (`cp .env.example .env`) e preencha. O `.env` não vai para o Git.
+
 | Variável            | Uso                                                   |
 | ------------------- | ----------------------------------------------------- |
 | `VITE_EMAIL`        | E-mail que recebe o formulário (via FormSubmit)       |
