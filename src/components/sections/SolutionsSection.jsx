@@ -1,392 +1,225 @@
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { FaArrowRight, FaCheck, FaWhatsapp } from "react-icons/fa";
 
+import SectionHeading from "../ui/SectionHeading";
 import { whatsappLink } from "../../utils/links";
 
-/* Cards em destaque (Landing Page e Landing Page 3D) --------------------- */
-
-const featuredVariants = {
+const toneStyles = {
   pink: {
-    article:
-      "border-pink-500/20 bg-white shadow-xl shadow-pink-500/10 dark:bg-zinc-950",
-    glow: "from-pink-500/20 to-blue-500/10",
-    icon: "from-pink-500/25 to-pink-500/5 text-pink-500",
-    badge: "bg-pink-500/10 text-pink-600 dark:bg-pink-500/15 dark:text-pink-200",
-    eyebrow: "text-zinc-400 dark:text-white/40",
+    icon: "from-pink-500 to-fuchsia-500 shadow-pink-500/30",
     tagline: "text-pink-500 dark:text-pink-300",
-    description: "text-zinc-600 dark:text-white/65",
-    benefit: "border-pink-400/40 text-zinc-500 dark:text-white/55",
-    item: "text-zinc-700 dark:text-white/75",
-    check: "bg-pink-500/15 text-pink-500",
-    panel: "border-black/10 bg-black/[0.02] dark:border-white/10 dark:bg-white/5",
-    panelLabel: "text-zinc-400 dark:text-white/40",
-    price: "text-zinc-900 dark:text-white",
-    priceNote: "text-zinc-500 dark:text-white/55",
-    priceAlt: "bg-pink-500/10 text-pink-700 dark:text-pink-200",
-    button:
-      "bg-gradient-to-r from-pink-500 to-blue-500 shadow-pink-500/20 hover:shadow-pink-500/30",
-    footnote: "text-zinc-400 dark:text-white/40",
+    check: "bg-pink-500/15 text-pink-500 dark:text-pink-300",
+    spot: "rgba(236, 72, 153, 0.18)",
   },
-  immersive: {
-    article:
-      "border-transparent bg-gradient-to-br from-indigo-950 via-zinc-900 to-black text-white shadow-2xl shadow-fuchsia-500/20",
-    glow: "from-fuchsia-500/25 to-indigo-500/15",
-    icon: "from-fuchsia-500/30 to-indigo-500/10 text-fuchsia-200",
-    badge: "bg-white/10 text-fuchsia-200",
-    eyebrow: "text-white/40",
-    tagline: "text-fuchsia-200",
-    description: "text-white/70",
-    benefit: "border-fuchsia-400/40 text-white/60",
-    item: "text-white/75",
-    check: "bg-fuchsia-500/20 text-fuchsia-200",
-    panel: "border-white/10 bg-white/5",
-    panelLabel: "text-white/40",
-    price: "text-white",
-    priceNote: "text-white/60",
-    priceAlt: "bg-fuchsia-500/15 text-fuchsia-100",
-    button:
-      "bg-gradient-to-r from-fuchsia-500 to-indigo-500 shadow-fuchsia-500/25 hover:shadow-fuchsia-500/35",
-    footnote: "text-white/45",
+  purple: {
+    icon: "from-fuchsia-500 to-purple-600 shadow-purple-500/30",
+    tagline: "text-purple-500 dark:text-purple-300",
+    check: "bg-purple-500/15 text-purple-500 dark:text-purple-300",
+    spot: "rgba(168, 85, 247, 0.2)",
+  },
+  indigo: {
+    icon: "from-purple-500 to-indigo-500 shadow-indigo-500/30",
+    tagline: "text-indigo-500 dark:text-indigo-300",
+    check: "bg-indigo-500/15 text-indigo-500 dark:text-indigo-300",
+    spot: "rgba(99, 102, 241, 0.2)",
   },
 };
 
-/* Cards orçados sob consulta -------------------------------------------- */
-
-const accentStyles = {
-  neutral: {
-    tagline: "text-pink-500 dark:text-pink-300",
-    benefit: "border-pink-400/40 text-zinc-500 dark:text-white/55",
-    card: "border-black/10 bg-white shadow-sm dark:border-white/10 dark:bg-zinc-950",
-    badge: "",
-    icon: "from-pink-500/15 to-blue-500/15 text-blue-500",
-    price: "text-zinc-900 dark:text-white",
-    button:
-      "border border-black/10 text-zinc-800 hover:border-pink-400/50 hover:bg-pink-500/5 hover:text-pink-600 dark:border-white/15 dark:text-white/85 dark:hover:border-pink-400/40 dark:hover:bg-white/5 dark:hover:text-pink-200",
-  },
-  premium: {
-    dark: true,
-    tagline: "text-blue-200",
-    benefit: "border-blue-400/40 text-white/60",
-    card: "border-transparent bg-gradient-to-br from-zinc-900 via-zinc-900 to-black text-white shadow-2xl shadow-blue-500/20 dark:from-zinc-900 dark:via-black dark:to-black",
-    badge: "bg-white/10 text-blue-200",
-    icon: "from-blue-400/30 to-fuchsia-400/20 text-blue-200",
-    price: "text-white",
-    button:
-      "bg-gradient-to-r from-blue-500 to-fuchsia-500 text-white shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/35",
-  },
-};
-
-function FeaturedCard({ item, index }) {
+function SolutionCard({ item, index }) {
   const Icon = item.icon;
-  const styles = featuredVariants[item.variant] ?? featuredVariants.pink;
+  const styles = toneStyles[item.tone] ?? toneStyles.purple;
   const ctaLink = whatsappLink(item.whatsappMessage);
   const isExternal = !ctaLink.startsWith("#");
 
+  // Posição do mouse dentro do card (0 a 1), usada para o tilt e o brilho.
+  const px = useMotionValue(0.5);
+  const py = useMotionValue(0.5);
+  const springX = useSpring(px, { stiffness: 160, damping: 18 });
+  const springY = useSpring(py, { stiffness: 160, damping: 18 });
+  const rotateY = useTransform(springX, [0, 1], [-7, 7]);
+  const rotateX = useTransform(springY, [0, 1], [7, -7]);
+  const spotX = useTransform(px, (value) => `${value * 100}%`);
+  const spotY = useTransform(py, (value) => `${value * 100}%`);
+  const spotlight = useMotionTemplate`radial-gradient(420px circle at ${spotX} ${spotY}, ${styles.spot}, transparent 70%)`;
+
+  const handlePointerMove = (event) => {
+    if (event.pointerType !== "mouse") return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    px.set((event.clientX - rect.left) / rect.width);
+    py.set((event.clientY - rect.top) / rect.height);
+  };
+
+  const resetPointer = () => {
+    px.set(0.5);
+    py.set(0.5);
+  };
+
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
-      style={{ "--bloom-delay": `${index * 0.45}s` }}
-      className={`bloom-border bloom-border-strong relative overflow-hidden rounded-[2rem] border p-6 sm:p-8 ${styles.article}`}
+    <motion.div
+      initial={{ opacity: 0, y: 60, rotateX: 12 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.7, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
+      style={{ perspective: 1200 }}
+      className="h-full"
     >
-      <div
-        aria-hidden="true"
-        className={`pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-gradient-to-br blur-3xl ${styles.glow}`}
-      />
+      <motion.article
+        onPointerMove={handlePointerMove}
+        onPointerLeave={resetPointer}
+        style={{ rotateX, rotateY, "--bloom-delay": `${index * 0.5}s` }}
+        className="bloom-border group relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-black/10 bg-white/85 p-7 shadow-xl shadow-purple-500/5 backdrop-blur-xl dark:border-white/10 dark:bg-[#0e0b1c]/80 dark:shadow-black/40"
+      >
+        <motion.div
+          aria-hidden="true"
+          style={{ background: spotlight }}
+          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        />
 
-      <div className="relative grid gap-8 lg:grid-cols-[1.35fr_1fr] lg:items-start">
-        <div>
-          <div className="flex flex-wrap items-center gap-3">
-            <div
-              className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br text-xl ${styles.icon}`}
-            >
-              <Icon aria-hidden="true" />
-            </div>
+        <div className="relative flex items-start justify-between gap-3">
+          <motion.div
+            whileHover={{ rotate: -8, scale: 1.08 }}
+            transition={{ type: "spring", stiffness: 300, damping: 14 }}
+            className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl text-white shadow-lg ${styles.icon}`}
+          >
+            <Icon aria-hidden="true" />
+          </motion.div>
 
-            <span
-              className={`rounded-full px-3 py-1 text-xs font-medium ${styles.badge}`}
-            >
+          {item.badge && (
+            <span className="rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-600 dark:bg-purple-500/15 dark:text-purple-200">
               {item.badge}
             </span>
-
-            <span
-              className={`text-xs uppercase tracking-[0.3em] ${styles.eyebrow}`}
-            >
-              {item.eyebrow}
-            </span>
-          </div>
-
-          <h3 className="mt-5 text-2xl font-semibold sm:text-3xl">
-            {item.name}
-          </h3>
-
-          <p className={`mt-1 text-sm font-medium ${styles.tagline}`}>
-            {item.tagline}
-          </p>
-
-          <p
-            className={`mt-4 max-w-2xl text-[15px] leading-7 ${styles.description}`}
-          >
-            {item.description}
-          </p>
-
-          <p
-            className={`mt-4 border-l-2 pl-3 text-sm leading-6 ${styles.benefit}`}
-          >
-            {item.benefit}
-          </p>
-
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {item.includes.map((entry) => (
-              <li
-                key={entry}
-                className={`flex items-start gap-3 text-sm leading-6 ${styles.item}`}
-              >
-                <span
-                  className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] ${styles.check}`}
-                >
-                  <FaCheck aria-hidden="true" />
-                </span>
-
-                <span>{entry}</span>
-              </li>
-            ))}
-          </ul>
+          )}
         </div>
 
-        <div className={`rounded-[1.5rem] border p-6 ${styles.panel}`}>
-          <p
-            className={`text-xs uppercase tracking-[0.3em] ${styles.panelLabel}`}
-          >
+        <h3 className="relative mt-6 text-2xl font-semibold">{item.name}</h3>
+
+        <p className={`relative mt-1 text-sm font-medium ${styles.tagline}`}>
+          {item.tagline}
+        </p>
+
+        <p className="relative mt-4 text-[15px] leading-7 text-zinc-600 dark:text-white/65">
+          {item.description}
+        </p>
+
+        <ul className="relative mt-6 space-y-3">
+          {item.features.map((feature, featureIndex) => (
+            <motion.li
+              key={feature}
+              initial={{ opacity: 0, x: -12 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.4,
+                delay: 0.35 + index * 0.15 + featureIndex * 0.08,
+              }}
+              className="flex items-start gap-3 text-sm leading-6 text-zinc-700 dark:text-white/80"
+            >
+              <span
+                className={`mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px] ${styles.check}`}
+              >
+                <FaCheck aria-hidden="true" />
+              </span>
+              {feature}
+            </motion.li>
+          ))}
+        </ul>
+
+        <div aria-hidden="true" className="flex-1" />
+
+        <div className="relative mt-8 border-t border-black/10 pt-6 dark:border-white/10">
+          <p className="text-xs uppercase tracking-[0.3em] text-zinc-400 dark:text-white/40">
             Investimento
           </p>
-
-          <p className={`mt-3 text-4xl font-semibold ${styles.price}`}>
-            {item.price}
-          </p>
-
-          <p className={`mt-1 text-sm ${styles.priceNote}`}>{item.priceNote}</p>
-
-          {item.priceAlt && (
-            <p
-              className={`mt-4 rounded-xl px-3 py-2 text-sm leading-5 ${styles.priceAlt}`}
-            >
-              {item.priceAlt}
-            </p>
-          )}
+          <p className="mt-1 text-lg font-semibold">Sob orçamento personalizado</p>
 
           <motion.a
             href={ctaLink}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noreferrer" : undefined}
-            aria-label={`${item.cta} — falar com a Bloom Pages`}
+            aria-label={`${item.cta} — falar com a BloomHub`}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className={`group mt-6 flex min-h-12 items-center justify-center gap-2 rounded-full px-5 py-3 text-center text-sm font-medium text-white shadow-lg transition-shadow hover:shadow-xl ${styles.button}`}
+            className="group/cta mt-5 flex min-h-12 items-center justify-center gap-2 rounded-full border border-purple-500/30 px-5 py-3 text-sm font-medium text-zinc-800 transition-colors hover:border-transparent hover:bg-gradient-to-r hover:from-pink-500 hover:via-purple-500 hover:to-indigo-500 hover:text-white dark:text-white/90"
           >
             {item.cta}
-
             <FaArrowRight
               aria-hidden="true"
-              className="text-xs transition duration-300 group-hover:translate-x-1"
+              className="text-xs transition duration-300 group-hover/cta:translate-x-1"
             />
           </motion.a>
-
-          {item.footnote && (
-            <p className={`mt-4 text-xs leading-5 ${styles.footnote}`}>
-              {item.footnote}
-            </p>
-          )}
         </div>
-      </div>
-    </motion.article>
+      </motion.article>
+    </motion.div>
   );
 }
 
-export default function SolutionsSection({ featured, solutions }) {
-  const helpLink = whatsappLink(
-    "Olá! Vi as soluções no site da Bloom Pages e quero mais informações.",
+export default function SolutionsSection({ solutions }) {
+  const bundleLink = whatsappLink(
+    "Olá! Vim pelo site da BloomHub e quero um orçamento do pacote completo (Agente de IA + Landing Page + CRM).",
   );
-  const helpIsExternal = !helpLink.startsWith("#");
+  const bundleIsExternal = !bundleLink.startsWith("#");
 
   return (
-    <section id="solucoes" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="max-w-3xl"
-      >
-        <p className="text-sm uppercase tracking-[0.35em] text-pink-500/80 dark:text-pink-300/80">
-          Soluções
-        </p>
+    <section id="solucoes" className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <SectionHeading
+        eyebrow="Soluções"
+        title="Três soluções para você"
+        highlight="vender mais e perder menos clientes"
+        description="Escolha uma ou combine as três. Cada projeto é feito sob medida e orçado de acordo com a necessidade do seu negócio."
+      />
 
-        <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">
-          Tudo o que seu negócio precisa para
-          <span className="block bg-gradient-to-r from-pink-500 via-fuchsia-400 to-blue-500 bg-clip-text text-transparent">
-            crescer no digital
-          </span>
-        </h2>
-
-        <p className="mt-5 text-lg leading-8 text-zinc-600 dark:text-white/70">
-          As Landing Pages são o nosso principal serviço, com preço fechado e
-          tudo incluso — na versão tradicional ou na versão 3D. Os demais
-          projetos são orçados sob consulta, com escopo, prazo e valor definidos
-          antes de começar.
-        </p>
-      </motion.div>
-
-      {/* Produtos em destaque ------------------------------------------- */}
-
-      <div className="mt-12 space-y-8">
-        {featured.map((item, index) => (
-          <FeaturedCard key={item.id} item={item} index={index} />
+      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        {solutions.map((item, index) => (
+          <SolutionCard key={item.id} item={item} index={index} />
         ))}
       </div>
 
-      {/* Demais serviços ------------------------------------------------ */}
-
-      <div className="mt-16 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
-        {solutions.map((solution, index) => {
-          const Icon = solution.icon;
-          const styles = accentStyles[solution.accent] ?? accentStyles.neutral;
-          const isDark = Boolean(styles.dark);
-          const ctaLink = whatsappLink(solution.whatsappMessage);
-          const isExternal = !ctaLink.startsWith("#");
-
-          return (
-            <motion.article
-              key={solution.id}
-              initial={{ opacity: 0, y: 32 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.45,
-                delay: index * 0.08,
-                ease: "easeOut",
-              }}
-              whileHover={{ y: -6 }}
-              style={{ "--bloom-delay": `${index * 0.45}s` }}
-              className={`bloom-border relative flex h-full flex-col rounded-[1.5rem] border p-5 transition-shadow duration-300 hover:shadow-xl ${styles.card}`}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div
-                  className={`flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${styles.icon}`}
-                >
-                  <Icon className="text-lg" aria-hidden="true" />
-                </div>
-
-                {solution.badge && (
-                  <span
-                    className={`rounded-full px-3 py-1 text-xs font-medium ${styles.badge}`}
-                  >
-                    {solution.badge}
-                  </span>
-                )}
-              </div>
-
-              <h4 className="mt-4 text-lg font-semibold">{solution.name}</h4>
-
-              <p className={`mt-1 text-sm font-medium ${styles.tagline}`}>
-                {solution.tagline}
-              </p>
-
-              <p
-                className={`mt-3 text-sm leading-6 ${
-                  isDark ? "text-white/70" : "text-zinc-600 dark:text-white/65"
-                }`}
-              >
-                {solution.description}
-              </p>
-
-              <p
-                className={`mt-3 border-l-2 pl-3 text-[13px] leading-5 ${styles.benefit}`}
-              >
-                {solution.benefit}
-              </p>
-
-              <div aria-hidden="true" className="mt-5 flex-1" />
-
-              <div
-                className={`border-t pt-5 ${
-                  isDark ? "border-white/10" : "border-black/10 dark:border-white/10"
-                }`}
-              >
-                <p className={`text-xl font-semibold ${styles.price}`}>
-                  {solution.price}
-                </p>
-
-                <p
-                  className={`mt-1 text-[13px] leading-5 ${
-                    isDark ? "text-white/60" : "text-zinc-500 dark:text-white/55"
-                  }`}
-                >
-                  {solution.priceNote}
-                </p>
-              </div>
-
-              <motion.a
-                href={ctaLink}
-                target={isExternal ? "_blank" : undefined}
-                rel={isExternal ? "noreferrer" : undefined}
-                aria-label={`${solution.cta} — falar com a Bloom Pages`}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className={`group mt-5 flex min-h-11 items-center justify-center gap-2 rounded-full px-4 py-2.5 text-center text-sm font-medium transition-shadow ${styles.button}`}
-              >
-                {solution.cta}
-
-                <FaArrowRight
-                  aria-hidden="true"
-                  className="text-xs transition duration-300 group-hover:translate-x-1"
-                />
-              </motion.a>
-
-              {solution.footnote && (
-                <p
-                  className={`mt-3 text-[11px] leading-4 ${
-                    isDark ? "text-white/45" : "text-zinc-400 dark:text-white/40"
-                  }`}
-                >
-                  {solution.footnote}
-                </p>
-              )}
-            </motion.article>
-          );
-        })}
-      </div>
-
       <motion.div
-        initial={{ opacity: 0, y: 16 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: 30, scale: 0.97 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="mt-10 flex flex-col items-center gap-4 rounded-[1.5rem] border border-black/10 bg-black/[0.02] px-6 py-8 text-center dark:border-white/10 dark:bg-white/5"
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        className="relative mt-10 overflow-hidden rounded-[2rem] bg-gradient-to-r from-pink-500 via-purple-600 to-indigo-600 p-px"
       >
-        <p className="max-w-2xl text-[15px] leading-7 text-zinc-600 dark:text-white/70">
-          Quer saber mais sobre qualquer uma dessas soluções? Chame no WhatsApp:
-          a gente tira suas dúvidas, entende o seu caso e monta um orçamento sem
-          compromisso.
-        </p>
+        <div className="relative flex flex-col items-start gap-6 rounded-[calc(2rem-1px)] bg-white px-7 py-8 sm:flex-row sm:items-center sm:justify-between dark:bg-[#0e0b1c]">
+          <motion.div
+            aria-hidden="true"
+            animate={{ x: ["-30%", "130%"] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+            className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-purple-500/10 to-transparent"
+          />
 
-        <motion.a
-          href={helpLink}
-          target={helpIsExternal ? "_blank" : undefined}
-          rel={helpIsExternal ? "noreferrer" : undefined}
-          aria-label="Pedir mais informações no WhatsApp da Bloom Pages"
-          whileHover={{ scale: 1.03, y: -2 }}
-          whileTap={{ scale: 0.97 }}
-          transition={{ type: "spring", stiffness: 280, damping: 18 }}
-          className="flex min-h-12 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-pink-500 to-blue-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-pink-500/20 transition-shadow hover:shadow-xl hover:shadow-pink-500/30"
-        >
-          <FaWhatsapp aria-hidden="true" className="text-lg" />
-          Pedir mais informações no WhatsApp
-        </motion.a>
+          <div className="relative">
+            <p className="text-xl font-semibold">
+              Quer as três trabalhando juntas?
+            </p>
+            <p className="mt-1 text-[15px] text-zinc-600 dark:text-white/65">
+              Montamos um pacote completo, conectado e sob medida para o seu
+              negócio.
+            </p>
+          </div>
+
+          <motion.a
+            href={bundleLink}
+            target={bundleIsExternal ? "_blank" : undefined}
+            rel={bundleIsExternal ? "noreferrer" : undefined}
+            whileHover={{ scale: 1.04, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 280, damping: 18 }}
+            className="relative flex min-h-12 shrink-0 items-center gap-2 rounded-full bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-purple-500/25"
+          >
+            <FaWhatsapp aria-hidden="true" className="text-lg" />
+            Orçar pacote completo
+          </motion.a>
+        </div>
       </motion.div>
     </section>
   );

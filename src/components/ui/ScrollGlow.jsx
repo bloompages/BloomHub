@@ -43,8 +43,8 @@ export default function ScrollGlow() {
     return (
       <div aria-hidden="true" className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div className="absolute left-[-120px] top-[-120px] h-72 w-72 rounded-full bg-pink-500/20 blur-3xl" />
-        <div className="absolute right-[-120px] top-24 h-80 w-80 rounded-full bg-blue-500/20 blur-3xl" />
-        <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-fuchsia-500/10 blur-3xl" />
+        <div className="absolute right-[-120px] top-24 h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl" />
+        <div className="absolute bottom-0 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-purple-500/10 blur-3xl" />
       </div>
     );
   }
@@ -56,12 +56,12 @@ export default function ScrollGlow() {
     >
       <motion.div
         style={{ y: pinkY, x: pinkX, scale: pinkScale, opacity: pinkOpacity }}
-        className="absolute left-[-160px] top-0 h-[34rem] w-[34rem] rounded-full bg-pink-500/35 blur-[110px] dark:bg-pink-500/40"
+        className="absolute left-[-160px] top-0 h-[34rem] w-[34rem] rounded-full bg-pink-500/25 blur-[110px] dark:bg-pink-600/30"
       />
 
       <motion.div
         style={{ y: blueY, x: blueX, scale: blueScale }}
-        className="absolute right-[-160px] top-0 h-[32rem] w-[32rem] rounded-full bg-blue-500/30 blur-[110px] dark:bg-blue-500/35"
+        className="absolute right-[-160px] top-0 h-[32rem] w-[32rem] rounded-full bg-indigo-500/25 blur-[110px] dark:bg-indigo-600/30"
       />
 
       <motion.div
@@ -71,12 +71,12 @@ export default function ScrollGlow() {
           opacity: fuchsiaOpacity,
           rotate: fuchsiaRotate,
         }}
-        className="absolute left-1/2 top-0 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-fuchsia-500/25 blur-[110px] dark:bg-fuchsia-500/30"
+        className="absolute left-1/2 top-0 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-purple-500/20 blur-[110px] dark:bg-purple-600/25"
       />
 
       <motion.div
         style={{ y: violetY, x: violetX, scale: violetScale }}
-        className="absolute left-1/2 top-0 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-violet-500/20 blur-[110px] dark:bg-indigo-500/30"
+        className="absolute left-1/2 top-0 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-violet-500/15 blur-[110px] dark:bg-blue-700/25"
       />
     </div>
   );

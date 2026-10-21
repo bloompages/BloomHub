@@ -1,32 +1,42 @@
 import { motion } from "framer-motion";
 
+import BloomLogo from "../brand/BloomLogo";
+import SectionHeading from "../ui/SectionHeading";
+
 export default function DifferentialsSection({ items }) {
   return (
-    <section id="diferenciais" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-      <div className="grid gap-10 lg:grid-cols-[0.95fr,1.05fr] lg:items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-        >
-          <p className="text-sm uppercase tracking-[0.35em] text-pink-500/80 dark:text-pink-300/80">
-            Por que a Bloom Pages
-          </p>
+    <section
+      id="diferenciais"
+      className="relative overflow-hidden border-y border-black/10 bg-black/[0.02] dark:border-white/10 dark:bg-white/[0.02]"
+    >
+      {/* Flor gigante se desenhando ao fundo */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-40 top-1/2 h-[34rem] w-[34rem] -translate-y-1/2 opacity-10"
+      >
+        <BloomLogo auto glow={false} className="h-full w-full" />
+      </div>
 
-          <h2 className="mt-4 text-3xl font-semibold sm:text-4xl">
-            Um parceiro de tecnologia,
-            <span className="block bg-gradient-to-r from-pink-500 via-fuchsia-400 to-blue-500 bg-clip-text text-transparent">
-              não só quem entrega o arquivo.
-            </span>
-          </h2>
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-6 py-24 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8">
+        <div>
+          <SectionHeading
+            eyebrow="Por que a BloomHub"
+            title="Um parceiro de tecnologia,"
+            highlight="não só um fornecedor."
+          />
 
-          <p className="mt-6 max-w-xl text-lg leading-8 text-zinc-600 dark:text-white/70">
-            A Bloom Pages nasceu para ajudar negócios a se apresentarem bem no
-            digital e a organizarem o que acontece depois do clique: o
-            atendimento, o processo e a rotina de quem trabalha na empresa.
-          </p>
-        </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-6 max-w-xl text-lg leading-8 text-zinc-600 dark:text-white/70"
+          >
+            A BloomHub nasceu para ajudar negócios a atenderem melhor, venderem
+            mais e cuidarem de cada cliente, juntando atendimento inteligente,
+            páginas que convertem e organização em um só lugar.
+          </motion.p>
+        </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
           {items.map((item, index) => {
@@ -35,23 +45,28 @@ export default function DifferentialsSection({ items }) {
             return (
               <motion.article
                 key={item.title}
-                initial={{ opacity: 0, y: 28 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                initial={{ opacity: 0, y: 40, rotateX: 55 }}
+                whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
                 transition={{
-                  duration: 0.45,
-                  delay: index * 0.08,
-                  ease: "easeOut",
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: [0.22, 1, 0.36, 1],
                 }}
-                whileHover={{ y: -6 }}
-                className="group rounded-3xl border border-black/10 bg-white/70 p-6 shadow-sm transition-shadow duration-300 hover:shadow-lg dark:border-white/10 dark:bg-white/5"
+                whileHover={{ y: -6, rotateX: 8 }}
+                style={{ transformPerspective: 900, originY: 1 }}
+                className="group rounded-3xl border border-black/10 bg-white/80 p-6 shadow-sm backdrop-blur transition-shadow duration-300 hover:shadow-xl hover:shadow-purple-500/10 sm:odd:translate-y-6 dark:border-white/10 dark:bg-[#0e0b1c]/70"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500/20 to-blue-500/20 transition-transform duration-300 group-hover:scale-110">
+                <motion.div
+                  whileHover={{ rotate: 12, scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 12 }}
+                  className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-pink-500/20 via-purple-500/20 to-indigo-500/20"
+                >
                   <Icon
-                    className="text-xl text-[var(--color-primary)]"
+                    className="text-xl text-purple-500 dark:text-purple-300"
                     aria-hidden="true"
                   />
-                </div>
+                </motion.div>
 
                 <h3 className="text-lg font-semibold">{item.title}</h3>
 

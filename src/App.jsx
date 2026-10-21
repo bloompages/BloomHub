@@ -1,66 +1,61 @@
-import { useEffect, useState } from "react";
+import { MotionConfig } from "framer-motion";
 
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import HeroSection from "./components/sections/HeroSection";
+import MarqueeStrip from "./components/sections/MarqueeStrip";
 import SolutionsSection from "./components/sections/SolutionsSection";
+import AgentShowcaseSection from "./components/sections/AgentShowcaseSection";
+import HubFlowSection from "./components/sections/HubFlowSection";
 import ProcessSection from "./components/sections/ProcessSection";
 import DifferentialsSection from "./components/sections/DifferentialsSection";
 import FaqSection from "./components/sections/FaqSection";
 import ContactSection from "./components/sections/ContactSection";
 import FloatingWhatsApp from "./components/ui/FloatingWhats";
 import ScrollGlow from "./components/ui/ScrollGlow";
+import ScrollProgress from "./components/ui/ScrollProgress";
 
 import {
   highlights,
-  featuredSolutions,
+  marqueeItems,
   solutions,
+  agentDemo,
+  hubFlow,
   processSteps,
   differentials,
   faqItems,
+  interestOptions,
 } from "./data/siteData";
 
+// O site usa só o tema escuro (identidade da BloomHub): a classe `dark`
+// fica fixa no <html> do index.html.
 export default function App() {
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) return savedTheme;
-
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    return prefersDark ? "dark" : "light";
-  });
-
-  useEffect(() => {
-    const root = document.documentElement;
-
-    if (theme === "dark") {
-      root.classList.add("dark");
-    } else {
-      root.classList.remove("dark");
-    }
-
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-zinc-900 transition-colors duration-300 dark:bg-black dark:text-white selection:bg-pink-500/40 selection:text-white">
-      <ScrollGlow />
+    <MotionConfig reducedMotion="user">
+      <div className="min-h-screen overflow-x-hidden bg-ink text-white selection:bg-purple-500/40 selection:text-white">
+        <ScrollProgress />
+        <ScrollGlow />
 
-      <Header theme={theme} setTheme={setTheme} />
+        <Header />
 
-      <main className="relative z-10">
-        <HeroSection highlights={highlights} />
-        <SolutionsSection featured={featuredSolutions} solutions={solutions} />
-        <ProcessSection steps={processSteps} />
-        <DifferentialsSection items={differentials} />
-        <FaqSection items={faqItems} />
-        <ContactSection />
-      </main>
+        <main className="relative z-10">
+          <HeroSection highlights={highlights} />
+          <MarqueeStrip items={marqueeItems} />
+          <SolutionsSection solutions={solutions} />
+          <AgentShowcaseSection demo={agentDemo} />
+          <HubFlowSection steps={hubFlow} />
+          <ProcessSection steps={processSteps} />
+          <DifferentialsSection items={differentials} />
+          <FaqSection items={faqItems} />
+          <ContactSection interestOptions={interestOptions} />
+        </main>
 
-      <FloatingWhatsApp />
+        <FloatingWhatsApp />
 
-      <div className="relative z-10">
-        <Footer />
+        <div className="relative z-10">
+          <Footer />
+        </div>
       </div>
-    </div>
+    </MotionConfig>
   );
 }

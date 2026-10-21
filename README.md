@@ -1,16 +1,26 @@
-# React + Vite
+# BloomHub — Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Landing page da **BloomHub** (Agentes de IA · Landing Pages · CRM), focada em gerar pedidos de orçamento.
 
-Currently, two official plugins are available:
+Stack: React 19 + Vite, Tailwind CSS 4 e Framer Motion.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Rodando
 
-## React Compiler
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Variáveis de ambiente (`.env`)
 
-## Expanding the ESLint configuration
+| Variável            | Uso                                                   |
+| ------------------- | ----------------------------------------------------- |
+| `VITE_EMAIL`        | E-mail que recebe o formulário (via FormSubmit)       |
+| `VITE_WHATSAPP_URL` | Link `wa.me/<numero>` usado nos botões de orçamento   |
+| `VITE_INSTAGRAM`    | Perfil do Instagram (@bloomhub.io)                    |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Onde editar
+
+- Textos, soluções, FAQ e etapas: `src/data/siteData.js`
+- Logo (SVG animado): `src/components/brand/BloomLogo.jsx`
+- Seções: `src/components/sections/`

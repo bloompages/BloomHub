@@ -7,20 +7,24 @@
   /* FONT */
   --font-googleSans: "Google Sans", sans-serif;
 
-  /* BRAND COLORS */
-  --color-primary: #ec4899;     
-  --color-secondary: #3b82f6;  
+  /* BRAND COLORS (BloomHub: rosa → roxo → azul-violeta) */
+  --color-primary: #ec4899;
+  --color-accent: #a855f7;
+  --color-secondary: #6366f1;
 
   /* VARIAÇÕES (pra gradient e hover) */
   --color-primary-light: #f472b6;  
   --color-primary-soft: #fbcfe8;   
 
-  --color-secondary-light: #60a5fa; 
-  --color-secondary-soft: #bfdbfe;  
+  --color-secondary-light: #818cf8;
+  --color-secondary-soft: #c7d2fe;
 
   /* BASE */
   --color-background: #ffffff;
-  --color-background-dark: #000000;
+  --color-background-dark: #07070e;
+
+  /* Fundo escuro da marca (azul-noite do banner) */
+  --color-ink: #07070e;
 
   --color-surface: rgba(0, 0, 0, 0.03);
   --color-surface-dark: rgba(255, 255, 255, 0.05);
@@ -37,8 +41,13 @@
   --color-border-dark: rgba(255,255,255,0.1);
 }
 
+html {
+  color-scheme: dark;
+}
+
 body {
   font-family: var(--font-googleSans);
+  background-color: var(--color-ink);
 }
 html {
   scroll-behavior: smooth;
@@ -56,7 +65,7 @@ section[id] {
 }
 
 /* -----------------------------------------------------------------------
-   Borda animada com a paleta da Bloom (rosa → fúcsia → azul)
+   Borda animada com a paleta da BloomHub (rosa → roxo → azul)
    Usada nos cards de produto: .bloom-border (e .bloom-border-strong)
 ----------------------------------------------------------------------- */
 
@@ -70,7 +79,7 @@ section[id] {
   background: linear-gradient(
     120deg,
     var(--color-primary),
-    #d946ef,
+    var(--color-accent),
     var(--color-secondary),
     var(--color-primary-light),
     var(--color-primary)
@@ -120,4 +129,23 @@ section[id] {
     animation: none;
     opacity: 0.55;
   }
+}
+
+/* -----------------------------------------------------------------------
+   Faixa infinita (marquee): esmaece nas bordas
+----------------------------------------------------------------------- */
+
+.fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+/* Grade sutil de fundo no hero */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(168, 85, 247, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(168, 85, 247, 0.08) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
 }

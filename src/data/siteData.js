@@ -1,156 +1,153 @@
 import {
-  FaRocket,
-  FaGlobe,
-  FaLaptopCode,
-  FaCube,
   FaRobot,
-  FaBolt,
+  FaWindowMaximize,
+  FaFilter,
+  FaProjectDiagram,
   FaPalette,
   FaBullseye,
-  FaMobileAlt,
+  FaHeadset,
+  FaBullhorn,
   FaComments,
+  FaHandshake,
+  FaBolt,
+  FaCalendarCheck,
+  FaClock,
 } from "react-icons/fa";
 
 /* HERO ------------------------------------------------------------------ */
 
 export const highlights = [
-  "Landing pages prontas para receber anúncios e gerar contatos",
-  "Landing pages 3D com cenas interativas para impressionar seu cliente",
-  "Sites e sistemas web feitos sob medida para a sua operação",
-  "Agentes de IA que atendem seus clientes 24 horas por dia",
+  { icon: FaRobot, text: "Agentes de IA que atendem 24h" },
+  { icon: FaWindowMaximize, text: "Landing pages que convertem" },
+  { icon: FaFilter, text: "CRM automático: nenhum cliente esquecido" },
 ];
 
-/* SOLUÇÕES EM DESTAQUE --------------------------------------------------- */
+/* FAIXA ANIMADA --------------------------------------------------------- */
 
-export const featuredSolutions = [
-  {
-    id: "landing-page",
-    name: "Landing Page",
-    icon: FaRocket,
-    variant: "pink",
-    badge: "Nosso carro-chefe",
-    eyebrow: "Produto principal",
-    tagline: "Transforme visitantes em oportunidades.",
-    description:
-      "É o serviço que mais entregamos e o nosso preço fechado mais acessível: uma página estratégica para apresentar sua empresa, serviço ou produto e transformar visitantes em oportunidades.",
-    benefit: "Pronta para receber tráfego de anúncios e redes sociais.",
-    includes: [
-      "Domínio próprio incluso por 1 ano",
-      "Hospedagem e publicação da página no ar",
-      "Manutenção inclusa: ajustes de textos, imagens e contatos",
-      "Layout personalizado, sem template genérico",
-      "Versão para celular, tablet e desktop",
-      "Botão de WhatsApp e formulário de contato",
-    ],
-    price: "R$ 800,00",
-    priceNote: "à vista — preço fechado, sem surpresa",
-    priceAlt: "ou R$ 149,90 de entrada + R$ 149,90/mês na oferta anual",
-    footnote:
-      "No cartão, pagamento com juros conforme as condições da maquininha. No boleto, as condições são informadas na proposta.",
-    cta: "Quero minha Landing Page",
-    whatsappMessage: "Olá! Tenho interesse na Landing Page da Bloom Pages.",
-  },
-  {
-    id: "landing-page-3d",
-    name: "Landing Page 3D",
-    icon: FaCube,
-    variant: "immersive",
-    badge: "Experiência imersiva",
-    eyebrow: "Versão premium",
-    tagline: "Sua marca em outro nível.",
-    description:
-      "Uma landing page com cenas, objetos e animações em 3D, feita para marcas que querem impressionar já nos primeiros segundos e se destacar da concorrência.",
-    benefit:
-      "O visitante interage com o seu produto na tela, e não só olha uma foto.",
-    includes: [
-      "Cenas e objetos 3D interativos sob medida",
-      "Seu produto girando em 360° na tela",
-      "Animações que acompanham a rolagem",
-      "Layout exclusivo, sem template genérico",
-      "Otimização de performance para o celular",
-      "Versão para celular, tablet e desktop",
-      "Domínio próprio incluso por 1 ano",
-      "Hospedagem e publicação da página no ar",
-    ],
-    price: "R$ 3.000,00",
-    priceNote: "+ manutenção mensal de R$ 300,00/mês",
-    priceAlt:
-      "A manutenção cobre hospedagem e ajustes de textos, imagens, contatos e cenas 3D.",
-    footnote:
-      "Condições de parcelamento informadas na proposta, conforme a forma de pagamento escolhida.",
-    cta: "Quero uma Landing Page 3D",
-    whatsappMessage: "Olá! Tenho interesse na Landing Page 3D da Bloom Pages.",
-  },
+export const marqueeItems = [
+  "Agentes de IA",
+  "Landing Pages",
+  "CRM automático",
+  "Atendimento 24h",
+  "Follow-up automático",
+  "Mais conversão",
+  "Tudo conectado",
 ];
 
-/* DEMAIS SOLUÇÕES ------------------------------------------------------- */
+/* SOLUÇÕES -------------------------------------------------------------- */
 
 export const solutions = [
-  {
-    id: "sites",
-    name: "Sites profissionais",
-    icon: FaGlobe,
-    accent: "neutral",
-    tagline: "Sua marca com mais credibilidade.",
-    description:
-      "Sites profissionais desenvolvidos para fortalecer a presença digital da sua empresa e apresentar sua marca com mais credibilidade.",
-    benefit: "Estrutura com várias páginas: serviços, sobre, contato e mais.",
-    price: "Sob consulta",
-    priceNote: "orçamento conforme o número de páginas e recursos",
-    cta: "Solicitar orçamento",
-    whatsappMessage:
-      "Olá! Gostaria de um orçamento para um site com a Bloom Pages.",
-  },
-  {
-    id: "sistemas-web",
-    name: "Sistemas Web",
-    icon: FaLaptopCode,
-    accent: "neutral",
-    tagline: "Menos planilha, mais controle.",
-    description:
-      "Sistemas web personalizados para automatizar processos, organizar operações e facilitar a gestão do seu negócio.",
-    benefit: "Feito sob medida para o processo que a sua equipe já usa.",
-    price: "Sob consulta",
-    priceNote: "escopo e investimento definidos junto com você",
-    footnote:
-      "Cada sistema tem regras próprias, por isso o valor só é fechado depois de entendermos o seu processo.",
-    cta: "Falar sobre meu projeto",
-    whatsappMessage:
-      "Olá! Quero conversar sobre um sistema web com a Bloom Pages.",
-  },
-  {
-    id: "automacoes",
-    name: "Automações",
-    icon: FaBolt,
-    accent: "neutral",
-    tagline: "Sua rotina no piloto automático.",
-    description:
-      "Integrações e automações entre as ferramentas que você já usa: WhatsApp, planilhas, e-mail, CRM e formulários trabalhando juntos, sem trabalho manual.",
-    benefit: "Menos tarefa repetitiva e menos erro no dia a dia.",
-    price: "Sob consulta",
-    priceNote: "depende das ferramentas e do volume de tarefas",
-    footnote:
-      "Nos conte qual processo você quer automatizar e enviamos uma proposta com escopo, prazo e valor.",
-    cta: "Quero automatizar meu processo",
-    whatsappMessage:
-      "Olá! Quero conversar sobre automações com a Bloom Pages.",
-  },
   {
     id: "agente-de-ia",
     name: "Agente de IA",
     icon: FaRobot,
-    badge: "Solução avançada",
-    accent: "premium",
+    tone: "pink",
     tagline: "Atendimento que não dorme.",
     description:
-      "Agentes de IA personalizados para atender clientes, responder dúvidas, automatizar tarefas e apoiar sua empresa 24 horas por dia.",
-    benefit: "Nenhuma oportunidade perdida fora do horário comercial.",
-    price: "A partir de R$ 3.000,00",
-    priceNote: "+ manutenção mensal a partir de R$ 300,00/mês",
-    footnote:
-      "O investimento varia conforme a complexidade e as necessidades do projeto.",
-    cta: "Quero um Agente de IA",
-    whatsappMessage: "Olá! Tenho interesse em um Agente de IA da Bloom Pages.",
+      "Um assistente treinado com as informações do seu negócio para responder clientes, tirar dúvidas, qualificar contatos e agendar horários, a qualquer hora do dia.",
+    features: [
+      "Atendimento 24h no WhatsApp e no site",
+      "Treinado com os dados e o tom da sua empresa",
+      "Qualifica contatos e agenda horários",
+      "Passa a conversa para sua equipe quando precisa",
+    ],
+    cta: "Orçar meu Agente de IA",
+    whatsappMessage:
+      "Olá! Vim pelo site da BloomHub e quero um orçamento de Agente de IA.",
+  },
+  {
+    id: "landing-pages",
+    name: "Landing Pages",
+    icon: FaWindowMaximize,
+    tone: "purple",
+    badge: "Mais procurada",
+    tagline: "Visita que vira contato.",
+    description:
+      "Páginas estratégicas, rápidas e bonitas, feitas para apresentar sua oferta e transformar o tráfego de anúncios e redes sociais em clientes.",
+    features: [
+      "Layout exclusivo, sem template genérico",
+      "Pronta para anúncios e redes sociais",
+      "Perfeita no celular, tablet e desktop",
+      "Opção com experiência 3D interativa",
+    ],
+    cta: "Orçar minha Landing Page",
+    whatsappMessage:
+      "Olá! Vim pelo site da BloomHub e quero um orçamento de Landing Page.",
+  },
+  {
+    id: "crm",
+    name: "CRM automático",
+    icon: FaFilter,
+    tone: "indigo",
+    tagline: "Nenhum cliente esquecido.",
+    description:
+      "Todos os seus contatos organizados em um funil visual, com lembretes e follow-ups automáticos para sua equipe saber com quem falar e quando.",
+    features: [
+      "Funil de vendas visual e simples",
+      "Follow-ups e lembretes automáticos",
+      "Histórico completo de cada cliente",
+      "Contatos entram sozinhos do site e do WhatsApp",
+    ],
+    cta: "Orçar meu CRM",
+    whatsappMessage:
+      "Olá! Vim pelo site da BloomHub e quero um orçamento de CRM.",
+  },
+];
+
+/* AGENTE EM AÇÃO: simulação de conversa no celular 3D ------------------ */
+
+export const agentDemo = {
+  messages: [
+    { from: "client", text: "Oi! Vocês atendem no sábado?" },
+    {
+      from: "agent",
+      text: "Olá! 😊 Atendemos sim, das 9h às 14h. Quer que eu reserve um horário para você?",
+    },
+    { from: "client", text: "Quero! Pode ser às 10h?" },
+    {
+      from: "agent",
+      text: "Prontinho! Seu horário está confirmado para sábado, às 10h. ✅",
+    },
+  ],
+  // `after`: quantas mensagens precisam ter aparecido para o selo surgir.
+  badges: [
+    { icon: FaBolt, text: "Respondeu em segundos", after: 2 },
+    { icon: FaCalendarCheck, text: "Horário agendado", after: 4 },
+    { icon: FaFilter, text: "Contato salvo no CRM", after: 4 },
+  ],
+  bullets: [
+    { icon: FaClock, text: "Atende a qualquer hora, inclusive de madrugada" },
+    { icon: FaComments, text: "Entende o cliente do jeito que ele escreve" },
+    { icon: FaFilter, text: "Registra cada conversa no CRM automaticamente" },
+  ],
+};
+
+/* ECOSSISTEMA: como as soluções se conectam ----------------------------- */
+
+export const hubFlow = [
+  {
+    icon: FaBullhorn,
+    title: "A landing page atrai",
+    description:
+      "O visitante chega pelo anúncio ou pelo Instagram e encontra uma página feita para converter.",
+  },
+  {
+    icon: FaComments,
+    title: "O agente de IA atende",
+    description:
+      "Responde na hora, tira dúvidas e qualifica o contato, mesmo de madrugada ou no fim de semana.",
+  },
+  {
+    icon: FaFilter,
+    title: "O CRM organiza",
+    description:
+      "O contato cai no funil com todo o histórico, e os follow-ups são lembrados automaticamente.",
+  },
+  {
+    icon: FaHandshake,
+    title: "Você fecha a venda",
+    description:
+      "Sua equipe entra na hora certa, com o cliente já aquecido e as informações em mãos.",
   },
 ];
 
@@ -161,25 +158,25 @@ export const processSteps = [
     step: "01",
     title: "Conversa inicial",
     description:
-      "Entendemos seu negócio, seu público e o objetivo do projeto.",
+      "Entendemos seu negócio, seu público e onde você está perdendo clientes hoje.",
   },
   {
     step: "02",
-    title: "Proposta e escopo",
+    title: "Orçamento sob medida",
     description:
-      "Você recebe o que será entregue, o prazo e o investimento, sem surpresa depois.",
+      "Você recebe o escopo, o prazo e o investimento da solução ideal, sem surpresa depois.",
   },
   {
     step: "03",
     title: "Desenvolvimento",
     description:
-      "Layout, textos e código evoluem com você acompanhando cada etapa.",
+      "Criamos, treinamos e integramos tudo, com você acompanhando cada etapa.",
   },
   {
     step: "04",
-    title: "Publicação e ajustes",
+    title: "No ar e acompanhado",
     description:
-      "Colocamos no ar, testamos em celular e desktop e ajustamos o que for preciso.",
+      "Publicamos, testamos e seguimos ajustando para a solução render cada vez mais.",
   },
 ];
 
@@ -187,28 +184,28 @@ export const processSteps = [
 
 export const differentials = [
   {
-    icon: FaPalette,
-    title: "Projeto sob medida",
+    icon: FaProjectDiagram,
+    title: "Tudo conectado",
     description:
-      "Nada de template genérico: layout, textos e estrutura são pensados para o seu negócio.",
+      "Página, atendimento e CRM conversam entre si. Nenhum contato se perde no caminho.",
+  },
+  {
+    icon: FaPalette,
+    title: "Feito sob medida",
+    description:
+      "Nada de solução de prateleira: cada projeto é pensado para o seu negócio e o seu público.",
   },
   {
     icon: FaBullseye,
-    title: "Foco em conversão",
+    title: "Foco em resultado",
     description:
-      "Cada seção tem um objetivo claro: gerar contato, venda ou agendamento.",
+      "Cada detalhe tem um objetivo claro: gerar contato, agendamento ou venda.",
   },
   {
-    icon: FaMobileAlt,
-    title: "Feito para o celular",
+    icon: FaHeadset,
+    title: "Suporte próximo",
     description:
-      "Tudo é testado em celular, tablet e desktop antes de entrar no ar.",
-  },
-  {
-    icon: FaComments,
-    title: "Acompanhamento direto",
-    description:
-      "Você fala direto com quem desenvolve, do orçamento à publicação.",
+      "Você fala direto com quem desenvolve, do orçamento aos ajustes depois da entrega.",
   },
 ];
 
@@ -216,43 +213,47 @@ export const differentials = [
 
 export const faqItems = [
   {
-    question: "O que está incluído na Landing Page de R$ 800,00?",
+    question: "Quanto custa contratar a BloomHub?",
     answer:
-      "Criação da página com layout personalizado, organização dos textos junto com você, versão para celular, publicação no ar, domínio próprio por 1 ano e manutenção da página (ajustes de textos, imagens e contatos). É o nosso principal serviço e a porta de entrada mais acessível — quem quer uma experiência imersiva pode subir para a Landing Page 3D.",
+      "Cada projeto é orçado de acordo com a sua necessidade: o valor depende da solução escolhida, das integrações e do volume de atendimento. Você conta o que precisa e recebe uma proposta com escopo, prazo e investimento, sem compromisso.",
   },
   {
-    question: "O domínio e a manutenção continuam depois do primeiro ano?",
+    question: "Posso contratar só uma das soluções?",
     answer:
-      "O primeiro ano de domínio já vem incluso. A partir do segundo ano, a renovação do domínio e a continuidade da manutenção são combinadas com você — os valores são informados na proposta, sem cobrança surpresa.",
+      "Pode. Agente de IA, Landing Page e CRM funcionam separadamente. Mas, quando trabalham juntos, o resultado é maior: a página atrai, o agente atende e o CRM garante que ninguém fique sem retorno.",
   },
   {
-    question: "Como funciona o pagamento da Landing Page?",
+    question: "O agente de IA atende pelo WhatsApp?",
     answer:
-      "R$ 800,00 à vista ou R$ 149,90 de entrada + R$ 149,90 por mês na oferta anual. No cartão, o pagamento sai com juros conforme as condições da maquininha. No boleto, as condições são informadas na proposta.",
+      "Sim. O agente pode atender pelo WhatsApp e pelo site. As integrações exatas são definidas no orçamento, de acordo com as ferramentas que você já usa.",
   },
   {
-    question: "Por que sites, sistemas web e automações são sob consulta?",
+    question: "O agente de IA substitui minha equipe?",
     answer:
-      "Porque não existem dois projetos iguais: o valor depende do número de páginas, das funcionalidades, das integrações e do volume de tarefas envolvido. Você conta o que precisa e recebe uma proposta com escopo, prazo e valor antes de qualquer compromisso.",
+      "Não, ele potencializa. O agente cuida das perguntas repetitivas e do primeiro atendimento, a qualquer hora, e transfere a conversa para uma pessoa quando é preciso.",
   },
   {
-    question: "Qual a diferença da Landing Page 3D para a Landing Page comum?",
+    question: "Já uso uma planilha para controlar clientes. O CRM serve para mim?",
     answer:
-      "A Landing Page 3D traz cenas e objetos tridimensionais interativos: o visitante gira o seu produto na tela, vê animações que acompanham a rolagem e vive uma experiência bem mais marcante. O investimento é de R$ 3.000,00, mais manutenção mensal de R$ 300,00, que já inclui hospedagem e os ajustes de textos, imagens e das cenas 3D.",
+      "Serve, e é justamente o próximo passo. Organizamos seus contatos atuais em um funil visual e automatizamos os lembretes, para nenhum cliente ser esquecido.",
   },
   {
-    question: "Quanto custa um Agente de IA?",
+    question: "Quanto tempo leva para ficar pronto?",
     answer:
-      "O investimento parte de R$ 3.000,00, mais manutenção mensal a partir de R$ 300,00. O valor final depende da complexidade do atendimento, das integrações e do volume de conversas.",
-  },
-  {
-    question: "Quanto tempo leva para o projeto ficar pronto?",
-    answer:
-      "Depende do tipo de projeto e da agilidade no envio das informações. Landing pages são as entregas mais rápidas; sites, sistemas, automações e agentes de IA têm o prazo definido na proposta.",
+      "Depende da solução e da agilidade no envio das informações. Landing pages são as entregas mais rápidas; agentes de IA e CRM têm o prazo definido na proposta.",
   },
   {
     question: "Preciso ter os textos e as imagens prontos?",
     answer:
       "Não. Se você já tiver o material, aproveitamos. Se não, organizamos o conteúdo junto com você durante o projeto.",
   },
+];
+
+/* FORMULÁRIO: opções de interesse --------------------------------------- */
+
+export const interestOptions = [
+  "Agente de IA",
+  "Landing Page",
+  "CRM",
+  "Pacote completo",
 ];
